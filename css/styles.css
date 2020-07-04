@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+}
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+body{
+    background-color: #08AEEA;
+    background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+    height: 100vh;    
+}
+.mainContainer{
+    margin: 5px auto;
+    width: 98%;
+    max-width: 600px;
+}
+.toDoForm{
+    display: flex;
+    flex-direction: column;
+    background-color: #2e9cca;    
+    padding: 20px;
+    border: 2px solid #29648a;
+}
+.inputForm{
+    margin: 10px 0;
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 6px;    
+    color:#29648a;
+    font-weight: bolder;
+}
+.inputForm::placeholder{   
+    color:#29648a; 
+}
+.priorityBox{
+    display: flex;    
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;    
+    color: white;
+}
+.labelPriority{
+    display: inline-block;
+    height: 30px;
+    width: 30px;    
+    margin: 0 5px;   
+    border-radius: 50%;
+    border: 3px solid black;
+    cursor: pointer;  
+}
+.labelBorder{
+    border-color: white;
+}
+.priorityColor{ 
+    height: 30px;
+    width: 30px;    
+    margin: 0 5px;   
+    border-radius: 50%;
+    border: 3px solid black;    
+}
+.prioritySelect{
+    visibility: hidden;
+}
+.high{
+    background-color: #d9534f;
+}
+.medium{
+    background-color: #f0ad4e;
+}
+.low{
+    background-color: #5cb85c;
+}
+.submitBut{    
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bolder;
+    background-color: #29648a;
+    color: white;
+    border: 2px solid #aaabb8;
+}
+
+/** Task List **/
+.gridContainer{
+    display: grid;
+    grid-template-columns: 50px auto 100px 50px; 
+    justify-items: center;
+    align-items: center;   
+    margin: 10px 0;
+    padding: 10px 0;
+    max-height: 100%;
+}
+.errorBox{           
+    background-color:white;
+    border: 2px solid red;
+    color: red;    
+    padding: 5px 10px;
+    font-size: 18px;
+}
+.errorHidden{
+    display: none;
+}
+
+/*Tachado texto*/
+.completed{
+    text-decoration: line-through;
+}
+/*Checkboxes*/
+.listCheckbox{
+   width: 25px;
+   height: 25px;
+}
+.textFormat{
+    font-size: 18px;
+    color: white;
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 100%;
+}
+.timeLeft{
+    font-size: 12px;
+}
+/** Delete Task**/
+.btnDelete{                  
+    width: 25px;
+    height: 25px;
+    font-weight: bolder;
+    background-color: #29648a;
+    border-color: 29648a;
+    color: white;
+}

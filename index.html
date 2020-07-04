@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>To Do List</title>
+</head>
+<body>
+    <main class="mainContainer">
+        <form  id="toDoForm" class="toDoForm" method="POST">
+            <input type="text" placeholder="New Task" id="taskTitle" class="inputForm" required maxlength="100">
+            <input type="datetime-local" id="taskDate" class="inputForm" required>
+            <div class="priorityBox"> 
+                <p class="textFormat">PRIORITY</p>  
+                <div>
+                    <label class="labelPriority high">                         
+                        <input type="radio" name="priority" value="high" id="highPriority" class="prioritySelect ">
+                    </label>
+                </div>
+                <div>
+                    <label class="labelPriority medium">
+                        <input type="radio" name="priority" value="medium" id="mediumPriority" class="prioritySelect "> 
+                    </label>        
+                </div>
+                <div>
+                    <label class="labelPriority low">
+                        <input type="radio" name="priority" value="low" id="lowPriority" class="prioritySelect ">
+                    </label>           
+                </div>         
+            </div>
+            <input type="submit" value="ADD" class="inputForm submitBut">
+        </form>
+
+        <div id="errorBox" class="errorBox errorHidden"></div>
+
+        <div id="taskList" class="taskList"></div>
+    </main>    
+
+    <script src="js/todo.js"></script>
+</body>
+</html>
