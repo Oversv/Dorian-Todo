@@ -1,8 +1,8 @@
-const form = document.querySelector("#toDoForm")
-const taskTitle = document.querySelector("#taskTitle")
-const taskDate = document.querySelector("#taskDate")
+const form = document.getElementById("toDoForm")
+const taskTitle = document.getElementById("taskTitle")
+const taskDate = document.getElementById("taskDate")
 const priority = document.getElementsByName("priority")
-const taskList = document.querySelector("#taskList")
+const taskList = document.getElementById("taskList")
 
 const formValidation = {
     title: false,
@@ -62,7 +62,7 @@ form.addEventListener('submit', e =>{
  
     //Invalid Task -> Error Message
     if(!task.title || !task.date || !task.priority){       
-        const errorBox = document.querySelector("#errorBox");
+        const errorBox = document.getElementById("errorBox");
         const errorFragment = new DocumentFragment()
 
         errorBox.innerHTML=""
@@ -90,10 +90,10 @@ form.addEventListener('submit', e =>{
 })
 
 //Listener load page
-onload = () =>{
+window.addEventListener('load', () =>{
     showTasks()
     setInterval((timer), 1000)    
-}
+})
 
 //Functions
 const errorMessage = (text)=>{
@@ -132,7 +132,7 @@ const showTasks = () =>{
 
     //Get all items from the localstorage
     for(let i = 0; i < localStorage.length; i++){
-        let key = localStorage.key(i)
+        const key = localStorage.key(i)
         allTasks.push(localStorage.getItem(key))      
     }
   
@@ -158,7 +158,7 @@ const showTasks = () =>{
         }    
 
         div.innerHTML +=`            
-                <input type="checkbox" class="listCheckbox"  onchange="updateTask(${e.id})" ${checked} >
+                <input type="checkbox" class="listCheckbox"  onchange="updateTask(${e.id})" ${checked}>
                 <p class="titleList textFormat ${completed}">${e.title}</p>
                 <p class="timeLeft textFormat" data-date=${e.date}></p>
                 <button class="btnDelete" onclick="deleteTask(${e.id})">X</button>`;     
@@ -172,10 +172,14 @@ const timer= () =>{
     const timeLeft = document.querySelectorAll(".timeLeft")   
     
     timeLeft.forEach(e =>{
-      
+        //Countdown timer
         const date = new Date(e.getAttribute("data-date")).getTime()
         let currentTime = new Date(Date.now()).getTime()
-        let day, hour, min, sec, ms
+        let day 
+        let hour 
+        let min 
+        let sec 
+        let ms
         let diff = date - currentTime
         
         ms = diff % 1000
@@ -187,14 +191,12 @@ const timer= () =>{
         hour = diff % 24
         day = (diff -hour) / 24 
 
-
         day = day.toString().padStart(2, '0')
         hour = hour.toString().padStart(2, '0')
         min = min.toString().padStart(2, '0')
         sec = sec.toString().padStart(2, '0')
 
-        if(day >= 0 && hour >= 0 && min >=0 && sec >= 0 ){
-            
+        if(day >= 0 && hour >= 0 && min >=0 && sec >= 0 ){            
             e.textContent= `${day}-${hour}-${min}-${sec}`
         }else{
             e.textContent= "Time is up!!"
