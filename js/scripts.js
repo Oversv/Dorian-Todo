@@ -103,41 +103,50 @@ const errorMessage = (text)=>{
 }
 
 const addTask = (task) =>{
-        
+    const allTasks = JSON.parse(localStorage.getItem('todo'))      
     const id = Date.now()
 
     task.id = id
-    localStorage.setItem(id, JSON.stringify(task))
+    allTasks.push(task)
+
+    localStorage.setItem('todo', JSON.stringify(allTasks))
     form.reset()
     showTasks()
 }
 
 const updateTask = id =>{
-    
-    const task = JSON.parse(localStorage.getItem(id))  
-    
-    task.completed = !task.completed 
-    localStorage.setItem(id, JSON.stringify(task))
+    const allTasks = JSON.parse(localStorage.getItem('todo'))    
+    const updatedTask = allTasks.map( e =>{
+        if(e.id === id) {
+            e.completed = !e.completed
+            return e
+        }
+        return e
+    })      
+ 
+    localStorage.setItem('todo', JSON.stringify(updatedTask))
     showTasks()  
 }
 
-const deleteTask = id => {
-    localStorage.removeItem(id)
+const deleteTask = id => {    
+    const allTasks = JSON.parse(localStorage.getItem('todo'))
+    const newAllTask = allTasks.filter(e => e.id !== id)
+
+    localStorage.setItem('todo', JSON.stringify(newAllTask))
     showTasks()
 }
 
-const showTasks = () =>{   
-    let allTasks =[]     
-    const fragment = new DocumentFragment()
+const showTasks = () =>{ 
 
-    //Get all items from the localstorage
-    for(let i = 0; i < localStorage.length; i++){
-        const key = localStorage.key(i)
-        allTasks.push(localStorage.getItem(key))      
+    if(!localStorage.getItem('todo')){        
+        localStorage.setItem('todo', JSON.stringify([]))        
     }
+
+    let allTasks = JSON.parse(localStorage.getItem('todo')) 
+    const fragment = new DocumentFragment()
   
     //Order by date of creation
-    allTasks=allTasks.map( e => JSON.parse(e)).sort((a,b) => a.id - b.id) 
+    allTasks=allTasks.sort((a,b) => a.id - b.id) 
 
     taskList.innerHTML = ""
 
